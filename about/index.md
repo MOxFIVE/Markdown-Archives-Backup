@@ -3,6 +3,7 @@ date: 2015-09-30 20:31:36
 toc: false
 original: false
 permalink: 
+fancybox: false
 ---
 
 <style type="text/css">
