@@ -1,8 +1,7 @@
 title: 404 Not Found：该页无法显示
-toc: false
-original: false
 comments: false
 permalink: /404
+fancybox: false
 ---
 
 <style type="text/css">

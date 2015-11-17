@@ -1,9 +1,7 @@
-layout: search
 title: — 搜索结果 —
-toc: false
 comments: false
-original: false
 permalink: /search
+fancybox: false
 ---
 <style type="text/css">
 	.st-query-present {

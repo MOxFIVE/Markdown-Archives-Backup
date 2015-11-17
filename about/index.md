@@ -1,8 +1,5 @@
 title: 关于我 & 留言板
 date: 2015-09-30 20:31:36
-toc: false
-original: false
-permalink: 
 fancybox: false
 ---
 
@@ -79,11 +76,17 @@ fancybox: false
  > 1. 善用利用搜索解决各类问题；
  > 1. 追求“秩序”，喜欢把各种事物变得井井有条。
 
+**博客主题:**
+> 博客目前使用的是自己改的主题 Yelee，介绍请转主题 [GitHub][1] 页面，欢迎 Star 或者给我提 [issue][2]。
+
+[1]: https://github.com/MOxFIVE/hexo-theme-yelee
+[2]: https://github.com/MOxFIVE/hexo-theme-yelee/issues?utf8=%E2%9C%93&q=is%3Aissue
+
 **博客文章下载:**
 > 本博客所有文章的原始 Markdown 文件都备份在 GitHub 上，有需要可以 [点此下载](https://github.com/MOxFIVE/Markdown-Archives-Backup)。
 
 **欢迎交流:**
-> 个人邮件及社交网站等信息见边栏底部。
+> 个人邮件及社交网站等信息见边栏底部；
 > 有什么留言或问题直接在文末留下评论即可。
 
 <div class="player">
