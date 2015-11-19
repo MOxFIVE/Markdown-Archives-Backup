@@ -77,7 +77,7 @@ fancybox: false
  > 1. 追求“秩序”，喜欢把各种事物变得井井有条。
 
 **博客主题:**
-> 博客目前使用的是自己改的主题 Yelee，介绍请转主题 [GitHub][1] 页面，欢迎 Star 或者给我提 [issue][2]。
+> 博客目前使用的是自己改的主题 Yelee，介绍请转主题 [GitHub][1] 页面，欢迎 Star 和提 [issue][2]。
 
 [1]: https://github.com/MOxFIVE/hexo-theme-yelee
 [2]: https://github.com/MOxFIVE/hexo-theme-yelee/issues?utf8=%E2%9C%93&q=is%3Aissue
