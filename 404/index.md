@@ -5,28 +5,13 @@ fancybox: false
 ---
 
 <style type="text/css">
-	.article-header {
-		padding: 0;
-		padding-top: 26px;
-		border-left: none;
-		text-align: center;
-	}
-	.article-header:hover {
-		border-left: none;
-	}
 	.article-title {
 		font-size: 2.1em;
 	}
 	strong a {
 		color: #747474;
 	}
-	.article-meta {
-		display: none;
-	}
 	.share {
-		display: none;
-	}
-	.ds-meta {
 		display: none;
 	}
 	.player {
@@ -67,13 +52,6 @@ fancybox: false
 	.pic br {
   		display: none;
   	}
-	#container .article-info-post.article-info {
-  	display: none;
-  	}
-	#container .article .article-title {
-	padding: 0;
-	}
-
 </style>
 
 ***

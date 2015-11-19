@@ -4,17 +4,8 @@ fancybox: false
 ---
 
 <style type="text/css">
-	.article-title {
-		text-align: center;
-	}
-	.article-header {
-		padding-right: 35px;
-	}
 	strong a {
 		color: #747474;
-	}
-	.article-meta {
-		display: none;
 	}
 	.player {
 		text-align: center;
@@ -31,14 +22,10 @@ fancybox: false
 		margin: 0;
 		padding: 0;
 	}
-
 	#ds-recent-visitors div img {
 		border-radius: 50%;
 		border: 1px solid #ddd;
 		padding: 2px;
-	}
-	#container .article .article-title {
-		padding: 0;
 	}
 	.pic {
 		text-align: center;
