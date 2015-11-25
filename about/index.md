@@ -23,27 +23,23 @@ fancybox: false
 		padding: 0;
 	}
 	#ds-recent-visitors div img {
+		display: inline-block !important;
 		border-radius: 50%;
 		border: 1px solid #ddd;
 		padding: 2px;
 	}
-	.pic {
-		text-align: center;
-		margin: 0;
+	.article-entry img:first-child {
+		display: block;
 	}
-	.pic br {
-  		display: none;
-  	}
 </style>
 
 ---
 
 　　**2015年8月，毕业一年后，终于明确了自己真正所热衷的事，并找到了与之匹配的职业 —— Web 前端工程师。为能如愿转职，开始利用业余时间，努力钻研，希望这一天尽早到来！**
+
 <p class="sign">—— MOxFIVE, 2015年9月30日</p>
 
-<div class="pic">
 <img src="/resources/Mihawk-Wind.gif" title="Mihawk-Wind">
-</div>
 
 **开博缘由:**
 > 在建立改造博客网站的过程中，学习和巩固前端基本知识；
