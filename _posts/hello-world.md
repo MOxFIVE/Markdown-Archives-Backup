@@ -1,6 +1,6 @@
 title: Hello World
 original: false
-toc: false
+
 date: 2015-08-19 00:00:00
 comments: 
 fancybox: false
@@ -12,9 +12,9 @@ Welcome to [Hexo](http://hexo.io/)! This is your very first post. Check [documen
 
 <!-- more -->
 
-## Quick Start
+Quick Start
 
-### Create a new post
+Create a new post
 
 ``` bash
 $ hexo new "My New Post"
@@ -22,7 +22,7 @@ $ hexo new "My New Post"
 
 More info: [Writing](http://hexo.io/docs/writing.html)
 
-### Run server
+Run server
 
 ``` bash
 $ hexo server
@@ -30,7 +30,7 @@ $ hexo server
 
 More info: [Server](http://hexo.io/docs/server.html)
 
-### Generate static files
+Generate static files
 
 ``` bash
 $ hexo generate
@@ -38,7 +38,7 @@ $ hexo generate
 
 More info: [Generating](http://hexo.io/docs/generating.html)
 
-### Deploy to remote sites
+Deploy to remote sites
 
 ``` bash
 $ hexo deploy
