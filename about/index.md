@@ -31,13 +31,16 @@ fancybox: false
 	.article-entry img:first-child {
 		display: block;
 	}
+	.article-entry span {
+		font-family: Arial;
+	}
 </style>
 
 ---
 
-　　**2015年8月，毕业一年后，终于明确了自己真正所热衷的事，并找到了与之匹配的职业 —— Web 前端工程师。为能如愿转职，开始利用业余时间，努力钻研，希望这一天尽早到来！**
+　　**2015年8月，毕业一年后，终于明确了自己真正所热衷的事，并找到了与之匹配的职业 <span>——</span> Web 前端工程师。为能如愿转职，开始利用业余时间，努力钻研，希望这一天尽早到来！**
 
-<p class="sign">—— MOxFIVE, 2015年9月30日</p>
+<p class="sign"><span>——</span> MOxFIVE, 2015年9月30日</p>
 
 <img src="/resources/Mihawk-Wind.gif" title="Mihawk-Wind">
 
