@@ -24,6 +24,8 @@ fancybox: false
 	}
 	#ds-recent-visitors div img {
 		display: inline-block !important;
+		width: 56px !important;
+		height: 56px !important;
 		border-radius: 50%;
 		border: 1px solid #ddd;
 		padding: 2px;
