@@ -10,6 +10,8 @@ fancybox: false
 	.player {
 		text-align: center;
 		margin: .5em auto 0;
+		width: 100%;
+		max-width: 22em;
 	}
 	.player br {
 		display: none;
@@ -78,7 +80,7 @@ fancybox: false
 > 有什么留言或问题直接在文末留下评论即可。
 
 <div class="player">
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=350 height=330 src="http://music.163.com/outchain/player?type=0&id=112513213&auto=0&height=430"></iframe>
+<iframe scrolling="auto" frameborder="no" border="0" marginwidth="0" marginheight="0" width=100% height=330 src="http://music.163.com/outchain/player?type=0&id=112513213&auto=0&height=430"></iframe>
 </div>
 
 <ul class="ds-recent-visitors" data-num-items="30" data-avatar-size="56"></ul>
