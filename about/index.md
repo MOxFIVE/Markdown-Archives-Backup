@@ -38,6 +38,9 @@ fancybox: false
 	.article-entry span {
 		font-family: Arial;
 	}
+	#ds-hot-posts {
+		display: none;
+	}
 </style>
 
 ---
