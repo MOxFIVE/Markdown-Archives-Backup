@@ -11,9 +11,6 @@ fancybox: false
     strong a {
         color: #747474;
     }
-    .share {
-        display: none;
-    }
     .player {
         margin-left: -10px;
     }
@@ -21,7 +18,10 @@ fancybox: false
         text-align: right;
         font-style: italic;
     }
-    #page-visit {
+    .share,
+    #page-visit,
+    .visit span:nth-child(2),
+    .pic br {
         display: none;
     }
     .center {
@@ -49,9 +49,6 @@ fancybox: false
         text-align: center;
         margin: 0;
     }
-    .pic br {
-          display: none;
-      }
 </style>
 
 ***
