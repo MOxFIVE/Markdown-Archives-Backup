@@ -1,0 +1,229 @@
+title: 为 Hexo 添加可折叠的文章目录
+date: 2016-06-13 20:06:30
+categories: 术业专攻
+tags:
+- Hexo
+- jQuery
+fancybox: false
+permalink: hexo-collapsible-toc
+---
+
+<h2 id="intro">前言</h2>Hexo 支持自动给文章加上目录，但默认生成的目录比较简陋，好在我们可以手动改进一下它，比如增加 点击展开/收起多级目录 的功能。
+
+<!-- more -->
+<img style="display: block;" src="/resources/feat.toc.gif" title="TOC">
+
+## 前期准备
+
+### 目录生成
+
+- 比如 [Yelee](https://github.com/MOxFIVE/hexo-theme-yelee/) 主题中用以下代码自带生成目录，使用 Hexo 自带的辅助函数 `<%-toc(post.content)%>` 来生成文章目录，同时将目录包裹起来以便修改样式。其他主题大同小异。
+
+```erb
+<div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <%- toc(post.content) %>
+</div>
+```
+
+### 观察结构
+
+- 审查元素，观察到生成后的目录 HTML 结构大致如下
+
+```html
+<div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc">
+        <li class="toc-item toc-level-2">
+            <a class="toc-link" href="#标题1">
+                <span class="toc-number">1.</span> <span class="toc-text">标题1</span>
+            </a>
+        </li>
+        <li class="toc-item toc-level-2">
+            <a class="toc-link" href="#标题2">
+                <span class="toc-number">2.</span> <span class="toc-text">标题2</span>
+            </a>
+            <!-- 含子标题 -->
+            <ol class="toc-child">
+                <li class="toc-item toc-level-3">
+                    <a class="toc-link" href="#子标题1"><span class="toc-number">2.1.</span> <span class="toc-text">子标题1</span>
+                    </a>
+                </li>
+                <li class="toc-item toc-level-3">
+                    <a class="toc-link" href="#子标题2"><span class="toc-number">2.2.</span> <span class="toc-text">子标题2</span></a>
+                </li>
+            </ol>
+        </li>
+    </ol>
+</div>
+```
+
+### 功能构思
+- 在每个包含子标题的大标题前插入小图标；
+- 找出需要绑定点击事件的元素；
+- 理清每次事件中子目录折叠和小图标切换的逻辑。
+
+## 代码编写
+
+### 添加小图标
+```js
+var $itemHasChild = $("#toc .toc-item:has(> .toc-child)");
+var $titleHasChild = $itemHasChild.children(".toc-link");
+$itemHasChild.prepend("<i class='fa fa-caret-down'></i><i class='fa fa-caret-right'></i>");
+
+var $iconToFold = $(".toc-item > .fa-caret-down");
+$iconToExpand.addClass("hide");
+```
+
+> 这里在匹配的大标题前插入了两个 `<i>` 标签，用于表示目录 `展开` 和 `收起` 这两种状态；
+> 标签使用了 [Font Awesome](http://fontawesome.io/) 中的小三角形图标，可自行更换或者用 CSS 绘制；
+
+### 点击小图标
+
+```js
+var clickIcon = function(){
+    $("#toc .toc-item > i").click(function(){
+        $(this).siblings(".toc-child").slideToggle(100);
+        $(this).toggleClass("hide");
+        $(this).siblings("i").toggleClass("hide");
+    })
+}()
+
+// 默认展开目录，所以隐藏掉表示“目录已展开”的图标（向下的小三角）
+var $iconToFold = $(".toc-item > .fa-caret-down");
+$iconToExpand.addClass("hide");
+```
+
+> - 点击小图标折叠次级目录，同时切换到相应图标；
+> - 这里图标的显示状态是在 `inline-block` 和 `none` 中切换，用 `toggleClass` 比较合适。
+
+### 点击大标题
+
+```js
+var clickTitle = function(){
+    $titleHasChild.dblclick(function(){
+        $(this).siblings(".toc-child").hide(100);
+        $(this).siblings("i").toggleClass("hide");
+    })
+    // After dblclick enent
+    $titleHasChild.click(function(){
+        var $curentTocChild = $(this).siblings(".toc-child");
+        if ($curentTocChild.is(":hidden")) {
+            $curentTocChild.show(100);
+            $(this).siblings("i").toggleClass("hide");
+        }
+    })
+}()
+```
+
+> - 这里按我自己的习惯设计成 `单击` 即展开目录，而折叠目录需要 `双击`。因为点击某个目录时，代表我希望了解该目录的内容，所以不希望单击就把对应目录给收起了；
+> - 单击事件要在双击事件之后，要不点击事件会出现异常。
+
+### 点击总标题
+
+- 之前给目录区加了个总标题 `文章目录`，现在可以给赋予其函数，以便点击时 展开/收起 所有目录
+
+```js
+var clickTocTitle = function(){
+    var $iconToExpand = $(".toc-item > .fa-caret-right");
+    var $iconToFold = $(".toc-item > .fa-caret-down");
+    var $subToc = $titleHasChild.next(".toc-child");
+
+    var $tocTitle = $("#toc .toc-title");
+
+    // 当包含多级目录时再执行
+    if ($titleHasChild.length) {
+        $tocTitle.addClass("clickable");
+        $tocTitle.click(function(){
+            if ($subToc.is(":hidden")) {
+                $subToc.show(150);
+                $iconToExpand.removeClass("hide");
+                $iconToFold.addClass("hide");
+            } else {
+                $subToc.hide(100);
+                $iconToExpand.addClass("hide");
+                $iconToFold.removeClass("hide");
+            }
+        })
+    }
+}()
+```
+
+### CSS 样式
+
+- 功能函数设置好后，再通过 CSS 调整下样式即可，样式根据主题风格和个人喜好自行调整；
+- 下面是部分自用样式，可参考
+
+```css
+/*小图标*/
+#toc ol.toc li.toc-item i {
+    display: inline-block;
+    margin-left: -0.9em;
+    width: 0.9em;
+    color: #b3b3b3;
+    font-weight: bold;
+    cursor: pointer;
+}
+#toc ol.toc li.toc-item i:hover {
+    color: #000;
+}
+/*关联图标的 Class*/
+#toc ol.toc li.toc-item i.hide {
+    display: none;
+}
+
+/*关联总标题的 Class*/
+#toc .toc-title.clickable {
+    cursor: pointer;
+}
+#toc .toc-title.clickable:hover {
+    color: #88acdb;
+}
+#toc .toc-title.clickable:active {
+    color: #d3d3d3;
+}
+
+/*其他目录相关*/
+#toc {
+    font-size: 0.9em;
+    line-height: 1.65em;
+}
+#toc .toc-title {
+    font-weight: bold;
+    color: #808080;
+}
+#toc ol.toc {
+    margin-left: 0;
+    padding: 0.7em;
+    padding-right: 0;
+}
+#toc ol.toc li.toc-item {
+    list-style-type: none;
+}
+
+#toc ol.toc li.toc-item:hover {
+    background: none;
+}
+#toc ol.toc a.toc-link {
+    color: #808080;
+}
+#toc ol.toc a.toc-link:visited {
+    color: #f48385;
+}
+#toc ol.toc a.toc-link:hover {
+    color: #88acdb;
+    text-decoration: none;
+    background: rgba(158,188,226,0.21);
+}
+#toc ol.toc ol.toc-child {
+    padding-left: 1.25em;
+    margin: 4px 0;
+}
+
+```
+
+## 相关链接
+1. **Font Awesome**: <http://fontawesome.io/>
+1. **Hexo TOC 辅助函数:** https://hexo.io/zh-cn/docs/helpers.html#toc
+1. ***为 Hexo 博客添加目录*** by **况琪** on <code>2015/02/09</code>: <http://kuangqi.me/tricks/enable-table-of-contents-on-hexo/>
+1. ***feat: collapsible TOC 可折叠目录*** by **MOxFIVE** on <code>2016/06/05</code>: <https://github.com/MOxFIVE/hexo-theme-yelee/commit/85764bbf482c78d819f8ca87bf9fe390d523dd3b>
