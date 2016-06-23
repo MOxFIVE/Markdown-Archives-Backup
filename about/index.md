@@ -31,6 +31,7 @@ fancybox: false
 		border-radius: 50%;
 		border: 1px solid #ddd;
 		padding: 2px;
+		box-shadow: 1px 1px 1px rgba(0,0,0, .15);
 	}
 	.article-entry img:first-child {
 		display: block;

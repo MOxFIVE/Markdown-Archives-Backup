@@ -1,0 +1,4 @@
+*.db
+db.json
+*._gs
+.nojekyll
